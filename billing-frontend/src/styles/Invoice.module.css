@@ -1,0 +1,413 @@
+/* ── Screen wrapper ── */
+.pageWrapper {
+  min-height: 100vh;
+  background: #c8c8c8;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Action Bar (screen only) ── */
+.actionBar {
+  width: 100%;
+  max-width: 794px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.newBillBtn {
+  padding: 8px 18px;
+  background: white;
+  border: 1px solid #888;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.newBillBtn:hover {
+  background: #f0f0f0;
+}
+
+.printBtn {
+  padding: 8px 22px;
+  background: #1a3a5c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.printBtn:hover {
+  background: #2a5080;
+}
+
+/* ── Loading / Error ── */
+.loadingWrapper,
+.errorWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 16px;
+  color: #444;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #ddd;
+  border-top-color: #1a3a5c;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ══════════════════════════════════════════
+   A4 INVOICE — THE MAIN DOCUMENT
+   ══════════════════════════════════════════ */
+.invoice {
+  width: 794px;          /* A4 at 96dpi */
+  background: white;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  font-family: 'Noto Sans', Arial, sans-serif;
+  font-size: 12px;
+  color: #111;
+  border: 2px solid #222;
+}
+
+/* ── Header ── */
+.headerTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 2px solid #222;
+}
+
+.shopInfoCell {
+  padding: 12px 14px;
+  vertical-align: top;
+  width: 60%;
+  border-right: 1px solid #222;
+}
+
+.shopName {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #1a3a5c;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.shopAddress {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.shopMeta {
+  font-size: 11px;
+  color: #555;
+  margin-top: 2px;
+}
+
+.invoiceTitleCell {
+  padding: 12px 14px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.invoiceTitle {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a3a5c;
+  border: 2px solid #1a3a5c;
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+/* ── Bill Info ── */
+.billInfoTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 2px solid #222;
+}
+
+.billInfoLeft {
+  padding: 8px 14px;
+  width: 45%;
+  vertical-align: top;
+  border-right: 1px solid #222;
+}
+
+.billInfoRight {
+  padding: 8px 14px;
+  vertical-align: top;
+}
+
+.infoRow {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.infoLabel {
+  font-weight: 600;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.infoValue {
+  color: #222;
+}
+
+/* ── Items Table ── */
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 2px solid #222;
+}
+
+.itemsTable thead tr {
+  background: #1a3a5c;
+  color: white;
+}
+
+.itemsTable thead th {
+  padding: 7px 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-right: 1px solid #3a5a7c;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.itemsTable thead th:last-child {
+  border-right: none;
+}
+
+.thSr  { width: 30px; }
+.thDesc { text-align: left !important; }
+.thNum { width: 72px; }
+
+.itemRow td {
+  padding: 5px 6px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.itemRow td:last-child {
+  border-right: none;
+}
+
+.tdSr {
+  text-align: center;
+  color: #666;
+  font-size: 11px;
+}
+
+.tdDesc {
+  text-align: left;
+  font-size: 12px;
+}
+
+.tdNum {
+  text-align: right;
+  font-size: 12px;
+  padding-right: 8px !important;
+  font-variant-numeric: tabular-nums;
+  font-family: 'Courier New', monospace;
+}
+
+.blankRow td {
+  height: 22px;
+  background: #fafafa;
+}
+
+/* ── Totals ── */
+.totalsTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 2px solid #222;
+}
+
+.totalsLeft {
+  padding: 10px 14px;
+  vertical-align: top;
+  border-right: 1px solid #222;
+  width: 50%;
+}
+
+.amountWords {
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.wordsText {
+  font-style: italic;
+  font-weight: 600;
+  color: #1a3a5c;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.totalLabel {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  background: #f5f5f5;
+  white-space: nowrap;
+  width: 160px;
+}
+
+.totalValue {
+  padding: 6px 12px 6px 6px;
+  font-size: 12px;
+  text-align: right;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.grandLabel {
+  background: #1a3a5c;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  border-bottom: none;
+}
+
+.grandValue {
+  background: #1a3a5c;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: none;
+}
+
+/* ── Footer ── */
+.footerTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.footerLeft,
+.footerMiddle,
+.footerRight {
+  padding: 12px 14px;
+  vertical-align: bottom;
+  border-right: 1px solid #ddd;
+  font-size: 11.5px;
+}
+
+.footerRight {
+  border-right: none;
+}
+
+.footerLeft {
+  width: 40%;
+}
+
+.footerMiddle {
+  width: 28%;
+  text-align: center;
+}
+
+.footerRight {
+  width: 32%;
+  text-align: center;
+}
+
+.footerSection {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.footerSection strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.signatureBox {
+  text-align: center;
+}
+
+.signatureLine {
+  border-bottom: 1px solid #555;
+  width: 80%;
+  margin: 40px auto 6px auto;
+}
+
+.signatureLabel {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Computer generated note */
+.computerGenerated {
+  text-align: center;
+  font-size: 10px;
+  color: #777;
+  padding: 6px;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════
+   PRINT STYLES
+   ══════════════════════════════════════════ */
+@media print {
+  @page {
+    size: A4;
+    margin: 8mm 10mm;
+  }
+
+  body {
+    background: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pageWrapper {
+    background: white;
+    padding: 0;
+  }
+
+  .actionBar {
+    display: none !important;
+  }
+
+  .invoice {
+    width: 100%;
+    box-shadow: none;
+    border: 2px solid #222;
+    page-break-after: avoid;
+  }
+
+  .blankRow {
+    display: table-row;
+  }
+}

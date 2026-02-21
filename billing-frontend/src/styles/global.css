@@ -1,0 +1,37 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #1a3a5c;
+  --primary-light: #2a5080;
+  --accent: #c8820a;
+  --bg: #e8e8e8;
+  --card: #ffffff;
+  --border: #333333;
+  --border-light: #888888;
+  --text: #111111;
+  --text-muted: #555555;
+  --font-main: 'Noto Sans', Arial, sans-serif;
+  --font-invoice: 'Noto Serif', Georgia, serif;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+}
