@@ -30,6 +30,7 @@ public class BillService {
         bill.setCustomerName(request.getCustomerName());
         bill.setCustomerGSTIN(request.getCustomerGSTIN());
         bill.setBillDate(LocalDate.now());
+        bill.setVehicleNumber(request.getVehicleNumber()); // Add this line
 
         BigDecimal totalBeforeTax = BigDecimal.ZERO;
         BigDecimal totalCGST = BigDecimal.ZERO;

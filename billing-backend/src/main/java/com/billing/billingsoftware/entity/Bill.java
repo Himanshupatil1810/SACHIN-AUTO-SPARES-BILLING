@@ -19,6 +19,8 @@ public class Bill {
     private String customerName;
 
     private String customerGSTIN;
+    // ADD THIS LINE
+    private String vehicleNumber;
 
     private LocalDate billDate;
 
@@ -114,5 +116,14 @@ public class Bill {
 
     public void setItems(List<BillItem> items) {
         this.items = items;
+    }
+
+    // ADD THESE METHODS
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
     }
 }

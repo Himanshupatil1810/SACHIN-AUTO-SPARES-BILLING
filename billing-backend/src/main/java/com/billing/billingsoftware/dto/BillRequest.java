@@ -6,6 +6,7 @@ public class BillRequest {
 
     private String customerName;
     private String customerGSTIN;
+    private String vehicleNumber;
 
     private List<BillItemRequest> items;
 
@@ -33,5 +34,14 @@ public class BillRequest {
 
     public void setItems(List<BillItemRequest> items) {
         this.items = items;
+    }
+
+    // Add Getter and Setter for vehicleNumber
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
     }
 }

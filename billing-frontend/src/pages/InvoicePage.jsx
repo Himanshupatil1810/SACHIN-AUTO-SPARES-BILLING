@@ -6,18 +6,18 @@ import styles from '../styles/Invoice.module.css'
 
 // Shop constants
 const SHOP = {
-  name: 'SACHIN AUTO SPARES',
-  address: 'Bhigwan Chowk, Baramati, Pune - 413102',
-  gstin: '27XXXXX0000X1ZX',
-  phone: '+91 98765 43210',
+  name: import.meta.env.VITE_SHOP_NAME,
+  address: import.meta.env.VITE_SHOP_ADDRESS,
+  gstin: import.meta.env.VITE_SHOP_GSTIN,
+  phone: import.meta.env.VITE_SHOP_PHONE,
   state: 'Maharashtra',
   stateCode: '27',
 }
 
 const BANK = {
-  name: 'Bank of Maharashtra',
-  accountNo: 'XXXX XXXX XXXX 1234',
-  ifsc: 'MAHB0001234',
+  name: import.meta.env.VITE_BANK_NAME,
+  accountNo: import.meta.env.VITE_BANK_ACC,
+  ifsc: import.meta.env.VITE_BANK_IFSC,
   branch: 'Baramati Branch',
 }
 
@@ -106,16 +106,6 @@ function InvoicePage() {
             <tr>
               <td className={styles.billInfoLeft}>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Bill No.:</span>
-                  <span className={styles.infoValue}>{bill.billNumber}</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Date:</span>
-                  <span className={styles.infoValue}>{formatDate(bill.billDate)}</span>
-                </div>
-              </td>
-              <td className={styles.billInfoRight}>
-                <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Party Name:</span>
                   <span className={styles.infoValue}>{bill.customerName}</span>
                 </div>
@@ -131,6 +121,16 @@ function InvoicePage() {
                     <span className={styles.infoValue}>{bill.vehicleNumber}</span>
                   </div>
                 )}
+              </td>
+              <td className={styles.billInfoRight}>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Bill No.:</span>
+                  <span className={styles.infoValue}>{bill.billNumber}</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Date:</span>
+                  <span className={styles.infoValue}>{formatDate(bill.billDate)}</span>
+                </div>
               </td>
             </tr>
           </tbody>
