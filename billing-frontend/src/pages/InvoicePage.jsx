@@ -115,12 +115,6 @@ function InvoicePage() {
                     <span className={styles.infoValue}>{bill.customerGSTIN}</span>
                   </div>
                 )}
-                {bill.vehicleNumber && (
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Vehicle No.:</span>
-                    <span className={styles.infoValue}>{bill.vehicleNumber}</span>
-                  </div>
-                )}
               </td>
               <td className={styles.billInfoRight}>
                 <div className={styles.infoRow}>
@@ -131,6 +125,12 @@ function InvoicePage() {
                   <span className={styles.infoLabel}>Date:</span>
                   <span className={styles.infoValue}>{formatDate(bill.billDate)}</span>
                 </div>
+                {bill.vehicleNumber && (
+                  <div className={styles.infoRow}>
+                    <span className={styles.infoLabel}>Vehicle No.:</span>
+                    <span className={styles.infoValue}>{bill.vehicleNumber}</span>
+                  </div>
+                )}
               </td>
             </tr>
           </tbody>
