@@ -60,8 +60,6 @@ function InvoicePage() {
 
   if (!bill) return null
 
-  const grandTotal = parseFloat(bill.grandTotal || 0)
-  const amountInWords = numberToWords(grandTotal)
 
   return (
     <div className={styles.pageWrapper}>
@@ -121,10 +119,10 @@ function InvoicePage() {
                   <span className={styles.infoLabel}>Party Name:</span>
                   <span className={styles.infoValue}>{bill.customerName}</span>
                 </div>
-                {bill.customerGstin && (
+                {bill.customerGSTIN && (
                   <div className={styles.infoRow}>
                     <span className={styles.infoLabel}>Party GSTIN:</span>
-                    <span className={styles.infoValue}>{bill.customerGstin}</span>
+                    <span className={styles.infoValue}>{bill.customerGSTIN}</span>
                   </div>
                 )}
                 {bill.vehicleNumber && (
@@ -164,7 +162,8 @@ function InvoicePage() {
                 <td className={styles.tdNum}>{fmt(item.cgstAmount)}</td>
                 <td className={styles.tdNum}>{item.sgstRate || 9}%</td>
                 <td className={styles.tdNum}>{fmt(item.sgstAmount)}</td>
-                <td className={styles.tdNum}>{fmt(item.taxableAmount)}</td>
+                {/* <td className={styles.tdNum}>{fmt(item.taxableAmount)}</td> */}
+                <td className={styles.tdNum}>{fmt(item.amountBeforeTax)}</td> {/* Changed from taxableAmount */}
               </tr>
             ))}
             {/* Fill blank rows for print look */}
@@ -191,24 +190,24 @@ function InvoicePage() {
               <td className={styles.totalsLeft} rowSpan={4}>
                 <div className={styles.amountWords}>
                   <strong>Amount in Words:</strong>
-                  <div className={styles.wordsText}>{amountInWords}</div>
+                  <div className={styles.wordsText}>{numberToWords(bill.totalAfterTax)}</div>
                 </div>
               </td>
               <td className={styles.totalLabel}>Total Taxable Amount</td>
-              <td className={styles.totalValue}>₹ {fmt(bill.totalTaxableAmount)}</td>
+              <td className={styles.totalValue}>₹ {fmt(bill.totalBeforeTax)}</td>
             </tr>
             <tr>
               <td className={styles.totalLabel}>Add CGST (9%)</td>
-              <td className={styles.totalValue}>₹ {fmt(bill.totalCgst)}</td>
+              <td className={styles.totalValue}>₹ {fmt(bill.cgstAmount)}</td>
             </tr>
             <tr>
               <td className={styles.totalLabel}>Add SGST (9%)</td>
-              <td className={styles.totalValue}>₹ {fmt(bill.totalSgst)}</td>
+              <td className={styles.totalValue}>₹ {fmt(bill.sgstAmount)}</td>
             </tr>
             <tr>
               <td className={`${styles.totalLabel} ${styles.grandLabel}`}>Grand Total</td>
               <td className={`${styles.totalValue} ${styles.grandValue}`}>
-                ₹ {fmt(grandTotal)}
+                ₹ {fmt(bill.totalAfterTax)}
               </td>
             </tr>
           </tbody>

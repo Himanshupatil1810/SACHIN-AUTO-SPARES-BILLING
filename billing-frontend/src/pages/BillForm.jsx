@@ -62,12 +62,12 @@ function BillForm() {
 
     const payload = {
       customerName,
-      customerGstin,
+      customerGSTIN: customerGstin,
       vehicleNumber,
       billDate,
       items: validItems.map((it) => ({
         description: it.description,
-        quantity: parseFloat(it.quantity),
+        quantity: parseInt(it.quantity),
         rate: parseFloat(it.rate),
         ...computeItemTotals(it.rate, it.quantity),
       })),
@@ -76,6 +76,15 @@ function BillForm() {
       totalSgst: summary.sgst,
       grandTotal: summary.grand,
     }
+    // const payload = {
+    //   customerName,
+    //   customerGSTIN: customerGstin, // Use the key the backend expects
+    //   items: validItems.map((it) => ({
+    //     description: it.description,
+    //     quantity: parseInt(it.quantity), // Backend expects int
+    //     rate: parseFloat(it.rate),      // Backend expects double
+    //   })),
+    // };
 
     try {
       setLoading(true)
